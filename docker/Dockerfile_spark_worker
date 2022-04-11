@@ -1,0 +1,18 @@
+FROM spark_base:v1
+
+LABEL author="LalitC" \
+      email="lalitstar@gmail.com" \
+      name="spark_worker" \
+      description="Image for Spark worker node" \
+      version="v1"
+
+ENV MASTER_CONTAINER_NAME=spark-master
+ENV MEMORY=4G
+ENV CORES=3
+ENV SPARK_WORKER_WEBUI_PORT 8081
+ENV SPARK_WORKER_LOG /spark/logs
+
+
+EXPOSE 8081
+
+ENTRYPOINT $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker -c $CORES -m $MEMORY spark://$MASTER_CONTAINER_NAME:7077

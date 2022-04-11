@@ -1,0 +1,15 @@
+FROM spark_base:v1
+
+LABEL author="LalitC" \
+      email="lalitstar@gmail.com" \
+      name="spark_master" \
+      description="Image for Spark master node" \
+      version="v1"
+
+ENV SPARK_MASTER_PORT 7077
+ENV SPARK_MASTER_WEBUI_PORT 8080
+ENV SPARK_MASTER_LOG /spark/logs
+
+EXPOSE 8080
+
+ENTRYPOINT $SPARK_HOME/bin/spark-class org.apache.spark.deploy.master.Master

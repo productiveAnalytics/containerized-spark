@@ -1,0 +1,23 @@
+FROM spark_base:v1
+
+LABEL author="LalitC" \
+      email="lalitstar@gmail.com" \
+      name="spark_submit" \
+      description="Image for Spark submit" \
+      version="v1"
+
+# Set default environment variables. These can also be set at the command line when invoking /bin/spark-submit
+ENV MASTER_CONTAINER_NAME=spark-master
+ENV SPARK_EXECUTOR_MEMORY=4G
+ENV SPARK_EXECUTOR_CORES=3
+
+# Install libraries
+# COPY ./resources/requirements.txt .
+# RUN python3 -m pip install -r requirements.txt
+
+# Copy required files (e.g. log4j properties) into container
+# COPY ./resources/log4j.properties ./resources/spark-defaults.conf $SPARK_HOME/conf/
+
+EXPOSE 4040 8888
+
+WORKDIR /home/
